@@ -1,24 +1,22 @@
 public enum SortingField {
 
-    SPADES,
-    DIAMONDS,
-    CLUBS,
-    HEARTS;
+    NAME,
+    SIZE,
+    DATE;
 
-    public static String returnShape(Shape shape) {
-        switch (shape) {
-            case SPADES:
-                return  "♠";
-            case DIAMONDS:
-                return "♦";
-            case CLUBS:
-                return "♣";
-            case HEARTS:
-                return "♥";
+    public static String returnShape(SortingField sortfiled) {
+        switch (sortfiled) {
+            case NAME:
+                return "by name";
+            case SIZE:
+                return "by size";
+            case DATE:
+                return "by date";
+
 
         }
         return "";
     }
 }
 
-}
+
