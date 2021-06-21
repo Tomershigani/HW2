@@ -14,6 +14,11 @@ public abstract class StorageItem {
 
 
     public StorageItem(String name){
+        /*
+        Constructor
+        :param link_param: Link obj of the method in which we calculate distance between clusters, before merging
+        :param samples: list of Samples to apply the algorithm on
+        */
         Random rnd = Main.rnd;
         long time1 = Timestamp.valueOf("2017-01-01 00:00:00").getTime();
         long time2= Timestamp.valueOf("2021-12-31 23:59:59").getTime();
