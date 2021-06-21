@@ -1,8 +1,8 @@
 
 
 public class File extends StorageItem {
-    private String name;
-    private String ext;
+    private final String name;
+    private final String ext;
     private String content;
 
     public File(String name, String ext) {
