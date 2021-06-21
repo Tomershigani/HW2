@@ -24,27 +24,49 @@ public class Folder extends StorageItem {
     }
 
     public boolean addItem(StorageItem item){
-        if (!isExist(item)){
+        if (!isExist(item.getName())){
             this.list.add(item);
             return true;
         }
         return false;
     }
 
-    public boolean isExist(StorageItem item1){
+    public boolean isExist(String item1){
         for (StorageItem item2 : this.list){
-            if (item2.getName().equals(item1.getName())){
+            if ((item2.getName()).equals(item1)){
                 return true;
             }
         }
         return false;
     }
 
-    public File findFile(String path){
-        if (path.length()==0)
+    public StorageItem getFile(String name) {
+        for (StorageItem item2 : this.list) {
+            if (item2.getName().equals(name)) {
+                return item2;
+            }
+        }
+        return null;
+    }
+    public File findFile(String path) {
+        StorageItem file = null;  //אם לא רץ לבדוק פה
+        String temp_name = path.substring((path.indexOf("/") - 1));
+        path = path.replaceAll(temp_name, "");
+        if (path.length() == 0) {
+            if (isExist(temp_name)) {
+                return (File)getFile(temp_name);
+            }
             return null;
-        String temp_name = "";
-        
+        }
+        if (isExist(temp_name)) {
+            file = ((Folder)getFile(temp_name)).findFile(path);
+            return (File)file;
+        }
+       return null;
+    }
+
+
+
 
     }
 }

@@ -19,8 +19,7 @@ public StorageItem(String name){
     Timestamp times2 = new Timestamp(2021,1,1,0,0,0,0);
     long time1 = times1.getTime();
     long time2 = times2.getTime();
-    Random rnd=Main.rnd;
-    long date1 = Math.abs(rnd.nextLong());
+    long date1 = Math.abs(new Random.nextLong());
     date1 = (date1 %(Math.abs(time1 - time2)))+ Math.min(time1,time2);
     this.name = name;
     this.size = size;
