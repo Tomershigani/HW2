@@ -15,9 +15,9 @@ public abstract class StorageItem {
 
     public StorageItem(String name){
         /*
-        Constructor
-        :param link_param: Link obj of the method in which we calculate distance between clusters, before merging
-        :param samples: list of Samples to apply the algorithm on
+        Constructor, choosing a random number from type long and normalize it between the border dates
+        :param string name: name of the item
+
         */
         Random rnd = Main.rnd;
         long time1 = Timestamp.valueOf("2017-01-01 00:00:00").getTime();
@@ -35,19 +35,25 @@ public abstract class StorageItem {
     }
     public abstract String getName();
 
-    public void byName(ArrayList<StorageItem>list){
+    public void byName(ArrayList<StorageItem>list){ //sorting the list by lexicographic order
         list.sort(Comparator.comparing(StorageItem::getName));
     }
 
-    public void bySize(ArrayList<StorageItem>list){
+    public void bySize(ArrayList<StorageItem>list){ //sorting the list by size
         list.sort(Comparator.comparing(StorageItem::getSize).thenComparing(Comparator.comparing(StorageItem::getName)));
     }
 
-    public void byDate(ArrayList<StorageItem>list){
+    public void byDate(ArrayList<StorageItem>list){ //sorting the list by date
         list.sort(Comparator.comparing(StorageItem::getDate).thenComparing(Comparator.comparing(StorageItem::getName)));
     }
 
     public void print_folder (SortingField field, StorageItem item, int counter){
+         /*
+        printing the system tree using the print_folder recursive method
+        :param SortingField field:set the type of sorting in a folder
+        :param StorageItem item: the item we want to print
+        :param int counter: counts hoe many folders are inside a folder
+        */
         System.out.println("");
         for (int i = 0; i < counter; i++) {
             System.out.print("|    ");
@@ -81,6 +87,8 @@ public abstract class StorageItem {
         return;
     }
     public void printTree(SortingField field){
+        // printing the system tree using the print_folder recursive method
+        //:param SortingField field:set the type of sorting in a folder
         if (this instanceof File) {
             System.out.print(this.getName());
             return;
