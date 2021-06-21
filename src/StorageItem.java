@@ -98,6 +98,7 @@ public abstract class StorageItem {
         for (StorageItem i : tree){
             print_folder(field, i, counter);
         }
+        System.out.println("");
     }
 
 }
