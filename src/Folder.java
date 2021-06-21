@@ -49,7 +49,7 @@ public class Folder extends StorageItem {
         return null;
     }
     public File findFile(String path) {
-        StorageItem file = null;  //אם לא רץ לבדוק פה
+        StorageItem file;  //אם לא רץ לבדוק פה
         String temp_name = path.substring((path.indexOf("/") - 1));
         path = path.replaceAll(temp_name, "");
         if (path.length() == 0) {
@@ -68,6 +68,6 @@ public class Folder extends StorageItem {
 
 
 
-    }
+
 }
 
