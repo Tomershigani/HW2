@@ -7,7 +7,7 @@ public class File extends StorageItem {
 
     public File(String name, String ext) {
         super(name);
-        this.name = name;
+        this.name = name;// to check
         this.ext = ext;
         this.content = "";
 
