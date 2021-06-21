@@ -6,6 +6,7 @@ public class File extends StorageItem {
     private String content;
 
     public File(String name, String ext) {
+        super(name);
         this.name = name;
         this.ext = ext;
         this.content = "";
