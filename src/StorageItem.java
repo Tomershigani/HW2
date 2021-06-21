@@ -43,7 +43,7 @@ public abstract class StorageItem {
     }
 
     public void print_folder (SortingField field, StorageItem item, int counter){
-        System.out.println("\n");
+        System.out.println("");
         for (int i = 0; i < counter; i++) {
             System.out.print("| ");
         }
@@ -52,7 +52,7 @@ public abstract class StorageItem {
             return;
         }
         if (item instanceof Folder){
-            System.out.println(item.getName());
+            System.out.print(item.getName());
             ArrayList <StorageItem> temp = ((Folder)item).list;
             if (field == SortingField.NAME)
             {
@@ -67,8 +67,9 @@ public abstract class StorageItem {
                 byDate(temp);
             }
             for (StorageItem s : temp) {
-                print_folder(field, s, counter++);
-                counter--;
+                counter = counter + 1;
+                print_folder(field, s, counter);
+                counter = counter - 1;
             }
         }
 
@@ -76,10 +77,10 @@ public abstract class StorageItem {
     }
     public void printTree(SortingField field){
         if (this instanceof File) {
-            System.out.println(this.getName());
+            System.out.print(this.getName());
             return;
         }
-        System.out.println(this.getName());
+        System.out.print(this.getName());
         ArrayList <StorageItem> tree = ((Folder)this).list;
         if (field == SortingField.NAME)
         {

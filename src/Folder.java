@@ -52,8 +52,15 @@ public class Folder extends StorageItem {
     }
     public File findFile(String path) {
         StorageItem file;  //אם לא רץ לבדוק פה
-        String temp_name = path.substring((path.indexOf("/") - 1));
-        path = path.replaceAll(temp_name, "");
+        String temp_name;
+        if (!(path.contains("/"))) {
+            temp_name = path;
+            path = "";
+        }
+        else {
+            temp_name = path.substring((path.indexOf("/") - 1));
+            path = path.replaceAll(temp_name+"/", "");
+        }
         if (path.length() == 0) {
             if (isExist(temp_name)) {
                 return (File)getFile(temp_name);
