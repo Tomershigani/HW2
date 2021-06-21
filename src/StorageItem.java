@@ -1,3 +1,4 @@
+
 import java.util.Random;
 import java.sql.Timestamp;
 import java.lang.Math;
@@ -30,8 +31,41 @@ public abstract int getSize();
 
 public abstract String getName();
 
-public void printTree(SortingField field){
+public void print_folder (SortingField field, StorageItem item, int counter){
+    System.out.println("\n");
+    for (int i = 0; i < counter; i++) {
+        System.out.print("| ");
+    }
+    if (item instanceof File) {
+        System.out.print(item.getName());
+        return;
+    }
+    if (item instanceof Folder){
+        System.out.println(item.getName());
+        ArrayList <StorageItem> temp = ((Folder)item).list;
+        String sort_name = field.toString();
+        sort_name(temp);
+        for (StorageItem s : temp) {
+                print_folder(field, s, counter++);
+                counter--;
+        }
+    }
 
+    return;
+}
+public void printTree(SortingField field){
+    if (this instanceof File) {
+        System.out.println(this.getName());
+        return;
+    }
+    System.out.println(this.getName());
+    ArrayList <StorageItem> tree = (Folder)this.list;
+    String sort_name = field.toString();
+    sort_name(tree);
+    int counter = 1 ;
+    for (StorageItem i : tree){
+        print_folder(field, i, counter);
+}
 }
 
 }
