@@ -29,7 +29,22 @@ public StorageItem(String name){
 
 public abstract int getSize();
 
-public abstract String getName();
+public long getDate() {
+        return date;
+    }
+    public abstract String getName();
+
+public void byName(ArrayList<StorageItem>list){
+    list.sort(Comparator.comparing(StorageItem::getName));
+}
+
+public void bySize(ArrayList<StorageItem>list){
+        list.sort(Comparator.comparing(StorageItem::getSize).thenComparing(Comparator.comparing(StorageItem::getName)));
+}
+
+public void byDate(ArrayList<StorageItem>list){
+        list.sort(Comparator.comparing(StorageItem::getDate).thenComparing(Comparator.comparing(StorageItem::getName)));
+}
 
 public void print_folder (SortingField field, StorageItem item, int counter){
     System.out.println("\n");
@@ -43,8 +58,18 @@ public void print_folder (SortingField field, StorageItem item, int counter){
     if (item instanceof Folder){
         System.out.println(item.getName());
         ArrayList <StorageItem> temp = ((Folder)item).list;
-        String sort_name = field.toString();
-        sort_name(temp);
+        if (field == SortingField.NAME)
+        {
+           byName(temp);
+        }
+        if (field == SortingField.SIZE)
+        {
+            bySize(temp);
+        }
+        if (field == SortingField.DATE)
+        {
+            byDate(temp);
+        }
         for (StorageItem s : temp) {
                 print_folder(field, s, counter++);
                 counter--;
@@ -60,8 +85,18 @@ public void printTree(SortingField field){
     }
     System.out.println(this.getName());
     ArrayList <StorageItem> tree = (Folder)this.list;
-    String sort_name = field.toString();
-    sort_name(tree);
+    if (field == SortingField.NAME)
+    {
+        byName(tree);
+    }
+    if (field == SortingField.SIZE)
+    {
+        bySize(tree);
+    }
+    if (field == SortingField.DATE)
+    {
+        byDate(tree);
+    }
     int counter = 1 ;
     for (StorageItem i : tree){
         print_folder(field, i, counter);
