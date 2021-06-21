@@ -58,8 +58,8 @@ public class Folder extends StorageItem {
             path = "";
         }
         else {
-            temp_name = path.substring((path.indexOf("/") - 1));
-            path = path.replaceAll(temp_name+"/", "");
+            temp_name = path.substring(0,(path.indexOf('/')));
+            path = path.replaceAll(temp_name+'/', "");
         }
         if (path.length() == 0) {
             if (isExist(temp_name)) {

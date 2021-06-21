@@ -45,7 +45,7 @@ public abstract class StorageItem {
     public void print_folder (SortingField field, StorageItem item, int counter){
         System.out.println("");
         for (int i = 0; i < counter; i++) {
-            System.out.print("| ");
+            System.out.print("|    ");
         }
         if (item instanceof File) {
             System.out.print(item.getName());
