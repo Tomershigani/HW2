@@ -2,8 +2,6 @@
 import java.util.Random;
 import java.sql.Timestamp;
 import java.lang.Math;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.*;
 
 
@@ -11,25 +9,23 @@ import java.util.*;
 
 public abstract class StorageItem {
 
-    private String name;
-    private double size;
-    private final long date;
+    private final String name;
+    final Timestamp date;
+
 
     public StorageItem(String name){
-        Timestamp times1 = new Timestamp(2017,1,1,0,0,0,0);
-        Timestamp times2 = new Timestamp(2021,1,1,0,0,0,0);
-        long time1 = times1.getTime();
-        long time2 = times2.getTime();
-        long date1 = Math.abs(new Random.nextLong());
+        Random rnd = Main.rnd;
+        long time1 = Timestamp.valueOf("2017-01-01 00:00:00").getTime();
+        long time2= Timestamp.valueOf("2021-12-31 23:59:59").getTime();
+        long date1 = Math.abs(rnd.nextLong());
         date1 = (date1 %(Math.abs(time1 - time2)))+ Math.min(time1,time2);
         this.name = name;
-        this.size = size;
-        this.date = date1;
+        this.date = new Timestamp(date1);
     }
 
     public abstract int getSize();
 
-    public long getDate() {
+    public Timestamp getDate() {
         return date;
     }
     public abstract String getName();
@@ -84,7 +80,7 @@ public abstract class StorageItem {
             return;
         }
         System.out.println(this.getName());
-        ArrayList <StorageItem> tree = (Folder)this.list;
+        ArrayList <StorageItem> tree = ((Folder)this).list;
         if (field == SortingField.NAME)
         {
             byName(tree);
