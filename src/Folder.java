@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-
-
 public class Folder extends StorageItem {
     String folderName;
     ArrayList <StorageItem> list;
@@ -12,6 +10,9 @@ public class Folder extends StorageItem {
         this.list = new ArrayList<>();
     }
     public int getSize() {
+        /*
+         summery the size of the files in the folder and return the folder size
+         */
         int sum = 0;
         int range = this.list.size();
         for (int i = 0; i < range; i++) {
@@ -26,6 +27,10 @@ public class Folder extends StorageItem {
     }
 
     public boolean addItem(StorageItem item){
+        /*
+         Adding item to the folder only if the item is not already exist
+         param: item to add
+         */
         if (!isExist(item.getName())){
             this.list.add(item);
             return true;
@@ -34,6 +39,10 @@ public class Folder extends StorageItem {
     }
 
     public boolean isExist(String item1){
+        /*
+        checking if the item exsit in the folder
+        param: item name
+         */
         for (StorageItem item2 : this.list){
             if ((item2.getName()).equals(item1)){
                 return true;
@@ -43,6 +52,10 @@ public class Folder extends StorageItem {
     }
 
     public StorageItem getFile(String name) {
+        /*
+        return the wanted file
+        param: item name
+         */
         for (StorageItem item2 : this.list) {
             if (item2.getName().equals(name)) {
                 return item2;
@@ -51,7 +64,11 @@ public class Folder extends StorageItem {
         return null;
     }
     public File findFile(String path) {
-        StorageItem file;  //אם לא רץ לבדוק פה
+        /*
+        recursive method that check if the file represent by the path is exist
+        param: item path
+         */
+        StorageItem file;
         String temp_name;
         if (!(path.contains("/"))) {
             temp_name = path;
@@ -73,10 +90,6 @@ public class Folder extends StorageItem {
         }
        return null;
     }
-
-
-
-
     }
 
 
